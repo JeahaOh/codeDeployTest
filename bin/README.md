@@ -2,40 +2,6 @@
 
 **ClassroomManagementSystem**
 
-## v7.1 
-
-- facebook login 처리하기
-- 작업
-    - loginpage에 facebook login btn 추가
-
-## v7.0
-
-- 권한 검사에 필터 대신에 Interceptor 사용
-- WebMvcConfigurer 구현.
-- 작업
-    - AuthInterceptor class 생성.
-    - WebConfig class로 WebMvcConfigurer 구현.
-
-## v6.9
-
-- Spring WebMVC 정리
-- 작업
-    - /WEB-INF/app-servblet.xml frontController 설정 파일 작성
-    - InternalResourceViewResolver 교체
-    - /WEB-INF/web.xml에서 frontController의 설정 파일 정보 지정하기
-    - JSP를 /WEB-INF/jsp 폴더로 옮긴다.
-    - PageController의 return값을 바꾼다.
-
-## v6.8
-
-- Spring 트랜젝션 적용하기
-    - Spring Transaction은 AOP 기술을 사용한다.
-- 작업
-    - 'aspectjweaver' lib를 추가한다.
-    - Spring Transaction 관리자를 생성하는 annotation을 JavaConfig에 설정한다. 
-        즉 @EnableTransactionManagement annotation을 추가한다
-    - Transaction으로 묶어서 DB SQL을 실행해야 하는 method에 @Transactional annotation을 붙인다.
-
 ## v6.7
 
 - 기존 lib를 Spring-WebMVC로 교체하기
