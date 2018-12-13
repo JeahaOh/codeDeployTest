@@ -1,4 +1,5 @@
 # java110-project
+[![Build Status](https://travis-ci.org/JeahaOh/codeDeployTest.svg?branch=master)](https://travis-ci.org/JeahaOh/codeDeployTest)
 
 **ClassroomManagementSystem**
 
