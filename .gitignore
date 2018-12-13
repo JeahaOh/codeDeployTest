@@ -41,7 +41,7 @@ Release/
 hs_err_pid*
 .chache/
 
-**/sec.properties
+sec.properties
 **/api.properties
 
 !build.gradle
