@@ -12,7 +12,7 @@
 
 </style>
 
-    <div class="col-12"><div class="row" id="follow-card-list">
+    <div class="col-12" style="text-align: -webkit-center;"><div class="row" style="width: 85%;"id="follow-card-list">
     	<c:forEach items="${flwlist}" var="member"  varStatus="status">
     		<div class="col-lg-6 col-md-6 col-sm-12 mb-3" id="flw-card-${member.mno}" >
     			<div class="card" >
@@ -20,8 +20,8 @@
     					<div class="media">
     						<img class="mr-3 profile-large" src="${member.profileImagePath}"
     							alt="/img/default-profile-img">
-    						<div>
-    							<h4 style ="text-align: center"><a class="c-pointer" onclick="goToFeed(${member.mno})">${member.nickname}</a></h4>
+    						<div class="w-100 text-center">
+    							<a class="c-pointer d-block" style="font-size: 1.4rem;" onclick="goToFeed(${member.mno})">${member.nickname}</a>
     							<button class="btn btn-primary "
     								onclick="removeFlw(${member.mno})">언팔로우</button>
     						</div>
@@ -31,7 +31,8 @@
     		</div>
     	</c:forEach>
     </div></div>
-				
+			
+	<c:if test="${!empty flwlist}">	
 	<jsp:include page="flwpaging.jsp" flush="true">
         <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
         <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
@@ -47,8 +48,8 @@
     </form>
 	<form action="flwdelete" id="deleteForm" method="post">
 		<input type="hidden" name="flw">
-	</form>
-	
+	 </form>
+	</c:if>
 	
 <script>
 function removeFlw(mno) {

@@ -24,9 +24,6 @@
     z-index: 9999;
     display: none;
 }
-a.navy {
-    color: #336699;
-}
 </style>
 </head>
 <body>
@@ -35,7 +32,8 @@ a.navy {
 <main role="main" class="container borderGray">
 
     <div class="row">
-        <div class="col-12" id="movie-cover" style="background-image: url(${sceneReview.imgPath})">
+        <div class="col-12 p-0" id="movie-cover">
+            <img id="movie-img" src="${sceneReview.imgPath}">
             <div class="row col-12" id="movie-content">
                 <div id="movie-title" class="float-left">
                     <h3><b>${tmdbMovie.title}</b>
@@ -296,9 +294,9 @@ a.navy {
     var initScene = { imgPath: '${sceneReview.imgPath}'};
     $('.scene-img').on('mouseover', function() {
         var imgPath = $(this).attr('src');
-        $('#movie-cover').css('background-image', 'url(' + imgPath + ')');
+        $('#movie-img').attr('src', imgPath);
     }).on('mouseleave', function() {
-        $('#movie-cover').css('background-image', 'url(' + initScene.imgPath + ')');
+        $('#movie-img').attr('src', initScene.imgPath);
     });
     
      /* ========== 입력 모달 관련  ========== */
@@ -594,6 +592,12 @@ a.navy {
                 } else {
                     commonAlert('error', '문제가 발생하였습니다.');
                 }
+            }, 
+            statusCode: {
+                401: function() {
+                    commonAlert('info', '세션이 종료되었습니다.');
+                    location.reload();
+                }
             }
         });
     }
@@ -613,6 +617,12 @@ a.navy {
                 } else {
                     commonAlert('error', '문제가 발생하였습니다.');
                 }
+            }, 
+            statusCode: {
+                401: function() {
+                    commonAlert('info', '세션이 종료되었습니다.');
+                    location.reload();
+                }
             }
         });
     }
@@ -627,6 +637,19 @@ a.navy {
                 $('span[id^="btn-heart-"]').hide();
                 $('span#btn-heart-full').show();
                 commonAlert('success', '좋아요 처리되었습니다.');
+            },
+            error : function(jqXHR, status, error) {
+                if (status == 401) {
+                    commonAlert('info', '로그인이 만료되었습니다.');
+                } else {
+                    commonAlert('문제가 발생하였습니다.');
+                }
+            }, 
+            statusCode: {
+                401: function() {
+                    commonAlert('info', '세션이 종료되었습니다.');
+                    location.reload();
+                }
             }
         });
     }
@@ -640,6 +663,16 @@ a.navy {
                 $('span[id^="btn-heart-"]').hide();
                 $('span#btn-heart-empty').show();
                 commonAlert('success', '좋아요 취소되었습니다.');
+                console.log
+            },
+            error : function(jqXHR, status, error) {
+                commonAlert('문제가 발생하였습니다.');
+            }, 
+            statusCode: {
+                401: function() {
+                    commonAlert('info', '세션이 종료되었습니다.');
+                    location.reload();
+                }
             }
         });
     }
@@ -682,6 +715,12 @@ a.navy {
             },
             complete : function() {
                 $('#reportModal').modal('hide');
+            }, 
+            statusCode: {
+                401: function() {
+                    commonAlert('info', '세션이 종료되었습니다.');
+                    location.reload();
+                }
             }
         });
     }
@@ -702,6 +741,12 @@ a.navy {
             },
             complete : function() {
                 goToSceneReview('${sceneReview.mvno}');
+            }, 
+            statusCode: {
+                401: function() {
+                    commonAlert('info', '세션이 종료되었습니다.');
+                    location.reload();
+                }
             }
         });
     }
